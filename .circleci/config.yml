@@ -1,0 +1,30 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/python:3.9
+      - image: postgres:13.9
+        environment:
+          POSTGRES_DB: "cloud_db"
+          POSTGRES_PASSWORD: "12345"
+
+    steps:
+      - checkout
+      - run:
+          name: Back
+          command: |
+            pip install --upgrade setuptools==59.6.0
+            pip install -r requirements-dev.txt
+            make pre-push-back
+      - sonarcloud/scan
+
+orbs:
+  sonarcloud: sonarsource/sonarcloud@1.0.3
+
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud
