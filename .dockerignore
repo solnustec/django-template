@@ -1,0 +1,12 @@
+#
+# Python
+#
+**/*.pyc
+*.sqlite
+
+#
+# Folders
+#
+media
+node_modules
+static

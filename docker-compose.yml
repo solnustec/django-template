@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:13.9
+    container_name: db
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=cloud_db
+    ports:
+      - "5454:5432"
+    networks:
+      - cloud-network
+    volumes:
+      - ./.volumes/postgres:/var/lib/postgresql/data
+
+  mail:
+    image: mailhog/mailhog
+    container_name: mail
+    restart: always
+    logging:
+      driver: 'none'  # disable saving logs
+    ports:
+      - "1025:1025" # smtp server
+      - "8025:8025" # web ui
+    networks:
+      - cloud-network
+
+  app:
+    build:
+      context: .
+      dockerfile: ./compose/docker/Dockerfile
+    container_name: app
+    image: solnustec.com/cloud:latest
+    restart: always
+    env_file: back.env
+    ports:
+      - "8800:8000"
+    networks:
+      - cloud-network
+    volumes:
+      - ./:/src
+    depends_on:
+      - db
+      - mail
+
+networks:
+  cloud-network:
+    driver: bridge
