@@ -32,7 +32,7 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Run lint and test
-        run: make pre-push-back
+        run: make pre-push
         env:
           DATABASE_HOST: localhost
           DATABASE_PORT: 5432
