@@ -10,9 +10,9 @@ source "$SOURCE_DIR/utils.sh"
 echo ""
 
 # Check all files and fix them when it is possible
-no_log_if_successful flake8 .
 no_log_if_successful isort . --profile black
 no_log_if_successful black .
+no_log_if_successful flake8 .
 
 # Make migrations
 no_log_if_successful python manage.py makemigrations

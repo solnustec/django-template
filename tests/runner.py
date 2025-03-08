@@ -1,5 +1,5 @@
 class PytestTestRunner(object):
-    """Runs pytest to discover and run tests."""
+    """Runs pytest to discover and run polls."""
 
     def __init__(self, verbosity=1, failfast=False, keepdb=False, **kwargs):
         self.verbosity = verbosity

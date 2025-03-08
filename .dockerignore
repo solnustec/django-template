@@ -1,12 +1,42 @@
 #
 # Python
 #
-**/*.pyc
 *.sqlite
 
 #
 # Folders
 #
 media
-node_modules
 static
+
+# Ignorar archivos de configuración local
+back.env
+local.env
+
+# Ignorar archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar dependencias de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Ignorar carpetas de entornos virtuales
+venv/
+env/
+
+# Ignorar archivos de control de versiones
+.git/
+.gitignore
+
+# Ignorar archivos generados por editores de texto
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignorar archivos y directorios de Docker Compose
+docker-compose.override.yml

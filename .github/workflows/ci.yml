@@ -1,0 +1,42 @@
+name: Build, Test & Lint process runner
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches: [master, main, truck]
+
+env:
+  REPO_NAME: ${{ github.event.repository.name }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13.9
+        env:
+          POSTGRES_DB: test_db
+          POSTGRES_PASSWORD: "12345"
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Python
+        uses: actions/setup-python@v4
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements-dev.txt
+
+      - name: Run lint and test
+        run: make pre-push
+        env:
+          DATABASE_HOST: localhost
+          DATABASE_PORT: 5432
+          DATABASE_NAME: test_db
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: 12345
+
