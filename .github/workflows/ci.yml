@@ -2,7 +2,7 @@ name: Build, Test & Lint process runner
 on:
   pull_request:
     types: [opened, synchronize]
-    # branches: [master, main, truck]
+    branches: [master, main, truck]
 
 env:
   REPO_NAME: ${{ github.event.repository.name }}
