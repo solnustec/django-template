@@ -6,8 +6,6 @@ services:
     restart: always
     env_file:
       - .env
-    environment:
-      - $(cat local.env 2>/dev/null | xargs)  # Carga local.env si existe
     extra_hosts:
       - "host.docker.internal:host-gateway"
     ports:
