@@ -1,0 +1,25 @@
+services:
+  mailhog:
+    container_name: django-template-mailhog
+    image: mailhog/mailhog:latest
+    restart: always
+    logging:
+      driver: 'none'  # disable saving logs
+    ports:
+      - "1025:1025" # smtp server
+      - "8025:8025" # web ui
+
+  postgresdb:
+    container_name: django-template-postgresdb
+    image: postgres:17.4-alpine
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=django-template-db
+    ports:
+      - "5454:5432"
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+
+volumes:
+  postgresdata: {}

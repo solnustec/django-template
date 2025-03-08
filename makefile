@@ -5,7 +5,7 @@ help:
 # Setup commands
 #
 run-tests:  ## Equivalent to python manage.py test --settings=tests.settings
-	pytest -n auto --reuse-db --no-migrations --vcr-record-mode=none --durations=30 --cov --cov-report=
+	pytest -n auto --reuse-db --no-migrations --durations=30 --cov=/src/apps --cov-report=term
 
 migrations:  ## Make django migrations
 	python3 manage.py makemigrations
@@ -29,9 +29,9 @@ lint-check:
 # Run before push to github
 #
 
-pre-push-fix-back:  ## Fix most of backend conflicts
-	./compose/scripts/pre_push_fix_back.sh
+pre-push-fix:  ## Fix most of backend conflicts
+	./scripts/pre_push_fix.sh
 
 
-pre-push-back:  ## Check backend code
-	./compose/scripts/pre_push_back.sh
+pre-push:  ## Check backend code
+	./scripts/pre_push.sh

@@ -1,0 +1,8 @@
+# Backend owner
+*.py @solnustec/backend
+
+# Devops owner
+/.github/workflows/ @solnustec/ops
+/scripts/ @solnustec/ops
+requirements.txt @solnustec/ops
+requirements-dev.txt @solnustec/ops

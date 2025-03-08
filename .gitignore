@@ -18,7 +18,6 @@
 !.tx
 !.isort.cfg
 !.editorconfig
-!.pre-commit-config.yaml
 *.css
 *.log
 *.pot
@@ -44,3 +43,6 @@ celerybeat-*
 
 #pytest
 MagicMock/
+
+*.env.*
+!back.env
